@@ -1,0 +1,32 @@
+USE master;
+GO
+
+IF EXISTS (SELECT name FROM sys.databases WHERE name = 'Lab2DB')
+BEGIN
+    ALTER DATABASE Lab2DB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+    DROP DATABASE Lab2DB;
+END
+GO
+
+CREATE DATABASE Lab2DB;
+GO
+
+USE Lab2DB;
+GO
+
+CREATE TABLE tblUsers
+(
+    UserID INT PRIMARY KEY IDENTITY(1,1),
+    Username NVARCHAR(50) NOT NULL,
+    Password NVARCHAR(50) NOT NULL
+);
+GO
+
+INSERT INTO tblUsers (Username, Password)
+VALUES
+('user1', 'password1'),
+('user2', 'password2');
+GO
+
+SELECT * FROM tblUsers;
+GO
